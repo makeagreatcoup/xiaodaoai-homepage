@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>王小导 · 不吹 AI，只带你做真实的事</title>
+<meta name="description" content="王小导，AI 自媒体。手把手带人做具体的事：选工具、搭结构、灌资料，一步步走完。目前开放免费 1v1 咨询。">
+<meta name="theme-color" content="#F3EEE3">
+<meta name="author" content="王小导">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="王小导 · 不吹 AI，只带你做真实的事">
+<meta property="og:description" content="AI 自媒体。手把手带人做具体的事：选工具、搭结构、灌资料。目前开放免费 1v1 咨询。">
+<meta property="og:image" content="./og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="./">
+<meta property="og:site_name" content="王小导">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="王小导 · 不吹 AI，只带你做真实的事">
+<meta name="twitter:description" content="AI 自媒体。手把手带人做具体的事，目前开放免费 1v1 咨询。">
+<meta name="twitter:image" content="./og-image.png">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.92em%22 font-size=%2288%22>🛠</text></svg>">
+
+<style>
+  :root{
+    --paper:#F3EEE3;
+    --card:#FFFDF8;
+    --ink:#12110F;
+    --red:#C0392B;
+    --gray:#6B665C;
+    --line:rgba(18,17,15,.14);
+    --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","HarmonyOS Sans SC","MiSans","Noto Sans SC","Microsoft YaHei",sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,"PingFang SC",monospace;
+    --shadow:6px 6px 0 var(--ink);
+    --gap:64px;
+    --pad:20px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%;overflow-x:hidden}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:var(--sans);font-size:16px;line-height:1.8;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  ::selection{background:var(--red);color:var(--paper)}
+  :focus-visible{outline:2px solid var(--red);outline-offset:3px}
+
+  .wrap{max-width:1120px;margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+
+  /* ---------- 首屏 ---------- */
+  .hero{
+    min-height:100vh;
+    min-height:100dvh;
+    display:flex;flex-direction:column;
+    padding:0 var(--pad) calc(28px + env(safe-area-inset-bottom));
+    max-width:1120px;margin:0 auto;
+  }
+  .masthead{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:12px;height:48px;border-bottom:1px solid var(--line);
+  }
+  .masthead .who{font-size:14px;white-space:nowrap}
+  .masthead .who span{color:#8A8478;margin:0 8px}
+  .masthead .wx{
+    font-size:13px;border-bottom:1.5px solid var(--red);
+    padding-bottom:1px;white-space:nowrap;
+  }
+  .masthead .wx:hover{color:var(--red)}
+
+  .hero-main{
+    flex:1;
+    display:flex;flex-direction:column;justify-content:center;
+    padding-top:24px;
+  }
+  @keyframes rise{
+    from{opacity:0;transform:translateY(14px)}
+    to{opacity:1;transform:translateY(0)}
+  }
+  .hero h1,.hero .lede,.hero .can li,.hero-foot{
+    animation:rise .6s cubic-bezier(.16,1,.3,1) both;
+  }
+  .hero h1{animation-delay:.08s}
+  .hero .lede{animation-delay:.2s}
+  .hero .can li:nth-child(1){animation-delay:.28s}
+  .hero .can li:nth-child(2){animation-delay:.36s}
+  .hero .can li:nth-child(3){animation-delay:.44s}
+  .hero-foot{animation-delay:.52s}
+
+  h1{
+    font-size:clamp(28px,8.5vw,48px);
+    font-weight:700;line-height:1.2;letter-spacing:-.03em;
+  }
+  .sticker{
+    display:inline-block;background:var(--red);color:var(--paper);
+    padding:2px 10px 3px;margin-top:10px;
+    transform:rotate(-1.5deg);transform-origin:left center;
+    animation:stick .34s .34s cubic-bezier(.16,1,.3,1) both;
+  }
+  @keyframes stick{
+    from{transform:rotate(6deg) scale(.92);opacity:0}
+    to{transform:rotate(-1.5deg) scale(1);opacity:1}
+  }
+  .lede{margin-top:24px;font-size:15px;color:var(--gray);max-width:30em}
+  .nb{white-space:nowrap}
+  .can{list-style:none;margin-top:28px;border-top:1px solid var(--line);max-width:34em}
+  .can li{
+    display:flex;gap:10px;padding:11px 0;
+    border-bottom:1px solid var(--line);font-size:15px;line-height:1.6;
+  }
+  .can li i{color:var(--red);font-style:normal;flex:none}
+
+  .hero-foot{margin-top:auto;padding-top:40px}
+  .rule{height:2px;background:var(--ink)}
+  .strip{display:grid;grid-template-columns:1fr 1.5fr .9fr;margin-top:20px}
+  .strip div{font-family:var(--mono);font-size:11px;letter-spacing:.04em}
+  .strip div + div{border-left:2px solid var(--ink);padding-left:10px}
+  .strip div:first-child{padding-right:10px}
+  .stamp{
+    display:inline-block;margin-top:24px;
+    border:1.5px solid var(--ink);padding:6px 11px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+    animation:stamp .4s .5s cubic-bezier(.16,1,.3,1) both;
+  }
+  @keyframes stamp{
+    from{transform:scale(1.12);opacity:0;border-color:transparent}
+    to{transform:scale(1);opacity:1;border-color:var(--ink)}
+  }
+
+  /* ---------- 通用区块 ---------- */
+  section{padding-top:var(--gap)}
+  .sec-head{display:flex;align-items:center;gap:10px;margin-bottom:28px}
+  .num{
+    background:var(--ink);color:var(--paper);
+    font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+    padding:3px 7px;flex:none;
+  }
+  .sec-head h2{font-size:26px;font-weight:700;letter-spacing:-.02em}
+
+  /* 关于我 */
+  .about{display:grid;grid-template-columns:1fr;gap:24px}
+  .avatar{
+    width:96px;height:96px;flex:none;
+    border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);
+    background:#EFE9DC;position:relative;overflow:hidden;
+    display:grid;place-items:center;
+    font-size:34px;font-weight:700;letter-spacing:0;
+  }
+  .avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .about-text{display:flex;gap:14px}
+  .about-text .bar{width:6px;background:var(--red);flex:none}
+  .about-text p{font-size:16px;line-height:1.9;max-width:34em}
+  .about-text p + p{margin-top:16px}
+
+  /* 项目卡 */
+  .cards{display:grid;grid-template-columns:1fr;gap:20px}
+  .card{
+    background:var(--card);border:2px solid var(--ink);border-radius:3px;
+    box-shadow:var(--shadow);padding:24px 22px;
+    display:flex;flex-direction:column;
+    transition:transform .12s linear,box-shadow .12s linear;
+  }
+  .card .idx{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--gray)}
+  .card h3{font-size:21px;font-weight:700;letter-spacing:-.02em;margin-top:6px;line-height:1.35}
+  .card .what{font-size:15px;color:var(--gray);margin-top:8px}
+  .card .did{font-size:14px;margin-top:auto;padding-top:14px;border-top:1px solid var(--line)}
+  .card .did b{font-weight:400;color:var(--gray)}
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:14px;margin-bottom:14px}
+  .flow span{
+    border:1.5px solid var(--ink);padding:3px 8px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.04em;
+  }
+  .flow em{color:var(--red);font-style:normal;font-size:12px}
+  .big{
+    font-size:clamp(42px,11vw,60px);font-weight:700;line-height:1;
+    letter-spacing:-.04em;font-variant-numeric:tabular-nums;margin-top:12px;
+  }
+  .big small{font-size:13px;font-weight:400;color:var(--gray);letter-spacing:0;margin-left:6px}
+
+  @media (hover:hover) and (pointer:fine){
+    .card:hover{transform:translate(6px,6px);box-shadow:0 0 0 var(--ink)}
+  }
+  .card:active{transform:translate(6px,6px);box-shadow:0 0 0 var(--ink)}
+
+  /* 数字带 */
+  .band{
+    background:var(--ink);color:var(--paper);
+    margin-top:var(--gap);padding:40px 0;
+  }
+  .band .inner{
+    max-width:1120px;margin:0 auto;padding:0 var(--pad);
+    display:grid;grid-template-columns:repeat(3,1fr);
+  }
+  .band .cell{padding:0 2px;min-width:0}
+  .band .cell + .cell{border-left:1px solid rgba(192,57,43,.9);padding-left:14px}
+  .band .n{
+    font-size:clamp(38px,10vw,60px);font-weight:700;line-height:1;
+    letter-spacing:-.04em;font-variant-numeric:tabular-nums;
+  }
+  .band .l{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;
+    color:rgba(243,238,227,.62);margin-top:10px;line-height:1.6;
+  }
+
+  /* 咨询 */
+  .contact{
+    background:var(--red);color:var(--paper);
+    padding:56px 0 calc(52px + env(safe-area-inset-bottom));
+    margin-top:var(--gap);
+  }
+  .contact .inner{max-width:1120px;margin:0 auto;padding:0 var(--pad)}
+  .contact .open{
+    display:inline-block;border:1.5px solid var(--paper);
+    padding:4px 9px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+  }
+  .contact h2{
+    font-size:clamp(34px,10vw,64px);font-weight:700;line-height:1.1;
+    letter-spacing:-.03em;margin-top:18px;
+  }
+  .contact .note{
+    font-size:15px;line-height:1.85;margin-top:20px;
+    color:rgba(243,238,227,.9);max-width:30em;
+  }
+  .copy{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--ink);color:var(--paper);border:0;border-radius:2px;
+    padding:15px 26px;font-family:var(--sans);font-size:16px;cursor:pointer;
+    transition:transform .1s linear,background .2s,color .2s;
+  }
+  .act{margin-top:28px}
+  .copy:active{transform:translateY(1px)}
+  .copy.done{background:var(--paper);color:var(--ink)}
+  .contact.shake{animation:shake .18s linear 1}
+  @keyframes shake{
+    0%,100%{transform:translate(0,0)}
+    50%{transform:translate(1px,-1px)}
+  }
+
+  /* 页脚 */
+  footer{background:var(--ink);color:var(--paper)}
+  footer .inner{
+    max-width:1120px;margin:0 auto;
+    padding:20px var(--pad) calc(20px + env(safe-area-inset-bottom));
+    display:flex;justify-content:space-between;align-items:center;gap:12px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+    color:rgba(243,238,227,.72);
+  }
+
+  @media (prefers-reduced-motion:no-preference){
+    html{scroll-behavior:smooth}
+  }
+
+  /* ---------- 平板 ---------- */
+  @media (min-width:600px){
+    .about{grid-template-columns:112px 1fr;gap:26px;align-items:start}
+    .avatar{width:112px;height:112px;font-size:40px;box-shadow:5px 5px 0 var(--ink)}
+    .cards{grid-template-columns:1fr 1fr;gap:22px}
+    .card:last-child{grid-column:1 / -1}
+    .card .what{max-width:30em}
+  }
+
+  /* ---------- 桌面 ---------- */
+  @media (min-width:900px){
+    :root{--gap:96px;--pad:40px}
+    .masthead{height:56px}
+    .hero-main{
+      padding-top:0;
+      flex:1;
+      align-content:center;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      column-gap:56px;
+      align-items:center;
+    }
+    h1{font-size:clamp(48px,4.6vw,68px)}
+    .lede{font-size:17px;margin-top:32px;max-width:none}
+    .can{grid-column:2;grid-row:1 / span 2;align-self:center;margin-top:0;max-width:none}
+    .can li{font-size:16px;padding:14px 0}
+    .hero-foot{padding-top:56px}
+    .sec-head{margin-bottom:32px}
+    .sec-head h2{font-size:32px}
+    .about{grid-template-columns:150px 1fr;gap:32px;align-items:start}
+    .avatar{width:150px;height:150px;font-size:52px;box-shadow:6px 6px 0 var(--ink)}
+    .about-text .bar{width:8px}
+    .cards{grid-template-columns:repeat(3,1fr);gap:22px}
+    .card:last-child{grid-column:auto}
+    .card{padding:28px 24px}
+    .about-text p{max-width:38em}
+    .band{padding:56px 0}
+    .contact{padding:80px 0 72px}
+    .contact .inner{
+      display:grid;grid-template-columns:1fr auto;
+      align-items:end;column-gap:56px;
+    }
+    .contact .note{max-width:34em}
+    .act{margin-top:0;text-align:right}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .sticker{transform:rotate(-1.5deg)}
+    .stamp{border-color:var(--ink)}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="masthead">
+    <div class="who">王小导<span>|</span>AI 自媒体</div>
+    <a class="wx" href="#contact">加微信 ↗</a>
+  </div>
+
+  <div class="hero-main">
+    <h1>不吹 AI，<br>只带你<br><span class="sticker">做真实的事</span></h1>
+
+    <p class="lede"><span class="nb">手把手带人做具体的事：</span><span class="nb">选工具、搭结构、灌资料，一步步走完。</span></p>
+
+    <ul class="can">
+      <li><i>→</i><span><span class="nb">把 AI 用起来：</span><span class="nb">从选工具到跑通第一个流程</span></span></li>
+      <li><i>→</i><span><span class="nb">搭一个自己的 AI 知识库：</span><span class="nb">选工具 → 搭结构 → 灌资料</span></span></li>
+      <li><i>→</i><span><span class="nb">免费 1v1 咨询：</span><span class="nb">聊一个具体问题，不收费</span></span></li>
+    </ul>
+  </div>
+
+  <div class="hero-foot">
+    <div class="rule"></div>
+    <div class="strip">
+      <div>AI 自媒体</div>
+      <div>口播 · 知识库 · 教程</div>
+      <div>加微信 ↗</div>
+    </div>
+    <div class="stamp">目前免费 1v1 咨询</div>
+  </div>
+</header>
+
+<main>
+  <section class="wrap" id="about">
+    <div class="sec-head"><span class="num">01</span><h2>关于我</h2></div>
+    <div class="about">
+      <div class="avatar">
+        <span>王</span>
+        <img src="./avatar.jpg" alt="王小导的头像" onerror="this.remove()">
+      </div>
+      <div class="about-text">
+        <div class="bar"></div>
+        <div>
+          <p>我是王小导，做 AI 自媒体的。现在手上三条线：口播、AI 知识库，还有公众号上的 AI 实操教程。</p>
+          <p>我不太擅长把 AI 讲得很玄。我更愿意手把手带人做一件具体的事——工具选哪个、知识库的结构怎么搭、资料怎么灌进去，一步一步走完，走完你手上真有个东西。</p>
+          <p>口播还在练，粉丝不多，10 多个，但我一条一条在发。主页上我最想让人记住的，就四个字：做真实的事。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="work">
+    <div class="sec-head"><span class="num">02</span><h2>在做的事</h2></div>
+    <div class="cards">
+
+      <article class="card">
+        <div class="idx">01</div>
+        <h3>AI 知识库</h3>
+        <p class="what">从零搭起来的一个 AI 知识库，用来给自媒体做内容生产。</p>
+        <div class="flow">
+          <span>选工具</span><em>→</em><span>搭结构</span><em>→</em><span>灌资料</span>
+        </div>
+        <p class="did"><b>我做了什么：</b>选工具、搭结构、灌资料，全流程自己走完。</p>
+      </article>
+
+      <article class="card">
+        <div class="idx">02</div>
+        <h3>口播练习</h3>
+        <div class="big">10+<small>粉丝</small></div>
+        <p class="did"><b>我做了什么：</b>持续练口播，边练边发。</p>
+      </article>
+
+      <article class="card">
+        <div class="idx">03</div>
+        <h3>公众号 · AI 实操教程</h3>
+        <p class="what">在公众号上写 AI 实操教程。</p>
+        <p class="did"><b>我做了什么：</b>把 AI 拆成一步步能照做的教程。</p>
+      </article>
+
+    </div>
+  </section>
+</main>
+
+<section class="band" aria-label="我的数字">
+  <div class="inner">
+    <div class="cell"><div class="n" data-count="3">3</div><div class="l">条内容线</div></div>
+    <div class="cell"><div class="n" data-count="1">1</div><div class="l">个知识库</div></div>
+    <div class="cell"><div class="n" data-count="10" data-suffix="+">10+</div><div class="l">粉丝 · 起步阶段</div></div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="inner">
+    <div class="intro">
+      <div class="open">目前开放</div>
+      <h2>免费 1v1 咨询</h2>
+      <p class="note">有具体的事想一起做，或者只是想问问怎么开始——直接加我，不收费。</p>
+    </div>
+    <div class="act">
+      <button class="copy" id="copyBtn" type="button" data-wx="xiaodao13545" aria-label="复制微信号">
+        <span id="copyText">复制微信号</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="inner">
+    <span>王小导 · 做真实的事</span>
+    <span>2026</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var btn = document.getElementById('copyBtn');
+  var txt = document.getElementById('copyText');
+  var block = document.querySelector('.contact');
+  var timer;
+
+  function ok(){
+    txt.textContent = '已复制';
+    btn.classList.add('done');
+    if(!reduce){
+      block.classList.remove('shake');
+      void block.offsetWidth;
+      block.classList.add('shake');
+    }
+    clearTimeout(timer);
+    timer = setTimeout(function(){
+      txt.textContent = '复制微信号';
+      btn.classList.remove('done');
+    }, 2000);
+  }
+
+  function fallback(){
+    var wx = btn.getAttribute('data-wx');
+    var ta = document.createElement('textarea');
+    ta.value = wx;
+    ta.setAttribute('readonly','');
+    ta.style.position = 'fixed';
+    ta.style.top = '-1000px';
+    document.body.appendChild(ta);
+    ta.select();
+    try{ document.execCommand('copy'); ok(); }
+    catch(e){ txt.textContent = '复制失败，请手动搜索'; }
+    document.body.removeChild(ta);
+  }
+
+  btn.addEventListener('click', function(){
+    var wx = btn.getAttribute('data-wx');
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(wx).then(ok).catch(fallback);
+    } else {
+      fallback();
+    }
+  });
+
+  var nums = document.querySelectorAll('.n[data-count]');
+  function run(el){
+    var target = parseInt(el.getAttribute('data-count'), 10);
+    var suffix = el.getAttribute('data-suffix') || '';
+    var done = false;
+    function finish(){ done = true; el.textContent = target + suffix; }
+    if(reduce || document.hidden){ finish(); return; }
+    var start = performance.now(), dur = 800;
+    function step(now){
+      var p = Math.min((now - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased) + suffix;
+      if(p < 1){ requestAnimationFrame(step); } else { done = true; }
+    }
+    requestAnimationFrame(step);
+    setTimeout(function(){ if(!done) finish(); }, 1400);
+  }
+
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ run(en.target); io.unobserve(en.target); }
+      });
+    }, {threshold:.6});
+    nums.forEach(function(n){ io.observe(n); });
+  } else {
+    nums.forEach(run);
+  }
+})();
+</script>
+</body>
+</html>
