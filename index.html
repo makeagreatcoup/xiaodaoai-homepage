@@ -107,7 +107,7 @@
   }
   .lede{margin-top:22px;font-size:15.5px;line-height:1.75;color:var(--gray);max-width:30em}
   .nb{white-space:nowrap}
-  .can{list-style:none;margin-top:30px;border-top:1px solid var(--line);max-width:34em}
+  .can{list-style:none;margin-top:30px;border-top:1px solid var(--line)}
   .can li{
     display:flex;gap:13px;padding:14px 0;
     border-bottom:1px solid var(--line);line-height:1.45;
@@ -153,16 +153,30 @@
   }
   .sec-head h2{font-size:26px;font-weight:700;letter-spacing:-.02em}
 
-  /* 关于我 */
-  .about{display:grid;grid-template-columns:1fr;gap:24px}
+  /* 首屏头像 */
+  .hero-id{display:flex;align-items:center;margin-bottom:24px}
   .avatar{
-    width:96px;height:96px;flex:none;
-    border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);
+    width:64px;height:64px;flex:none;
+    border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);
     background:#EFE9DC;position:relative;overflow:hidden;
     display:grid;place-items:center;
-    font-size:40px;font-weight:700;letter-spacing:0;
+    font-size:27px;font-weight:700;letter-spacing:0;
   }
   .avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+  /* 关于我 */
+  .about{display:grid;grid-template-columns:1fr;gap:32px}
+  .tags-h{
+    font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+    color:var(--gray);
+    border-top:2px solid var(--ink);
+    padding-top:13px;margin-bottom:14px;
+  }
+  .tag-list{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+  .tag-list li{
+    border:1.5px solid var(--ink);padding:5px 11px;
+    font-size:13px;line-height:1.45;white-space:nowrap;
+  }
   .about-text{display:flex;gap:14px}
   .about-text .bar{width:6px;background:var(--red);flex:none}
   .about-text p{font-size:16px;line-height:1.9;max-width:34em}
@@ -270,11 +284,11 @@
 
   /* ---------- 平板 ---------- */
   @media (min-width:600px){
-    .about{grid-template-columns:112px 1fr;gap:26px;align-items:start}
-    .avatar{width:112px;height:112px;font-size:40px;box-shadow:5px 5px 0 var(--ink)}
+    .avatar{width:76px;height:76px;font-size:31px;box-shadow:4px 4px 0 var(--ink)}
     .cards{grid-template-columns:1fr 1fr;gap:22px}
     .card:last-child{grid-column:1 / -1}
     .card .what{max-width:30em}
+    .about-text p{max-width:32em}
   }
 
   /* ---------- 桌面 ---------- */
@@ -312,13 +326,15 @@
     .band{display:none}
     .sec-head{margin-bottom:32px}
     .sec-head h2{font-size:32px}
-    .about{grid-template-columns:150px 1fr;gap:32px;align-items:start}
-    .avatar{width:150px;height:150px;font-size:58px;box-shadow:6px 6px 0 var(--ink)}
+    .about{display:grid;grid-template-columns:minmax(0,1fr) 244px;column-gap:56px;align-items:start}
+    .tag-list{flex-direction:column;align-items:flex-start;gap:7px}
+    .about-text p{font-size:17px;max-width:none}
+    .hero-id{margin-bottom:32px}
+    .avatar{width:88px;height:88px;font-size:37px;box-shadow:4px 4px 0 var(--ink)}
     .about-text .bar{width:8px}
     .cards{grid-template-columns:repeat(3,1fr);gap:22px}
     .card:last-child{grid-column:auto}
     .card{padding:28px 24px}
-    .about-text p{max-width:38em}
     .contact{padding:88px 0 80px;position:relative;overflow:hidden}
     .contact .note{max-width:32em}
     .act{margin-top:34px;text-align:left}
@@ -347,6 +363,13 @@
   </div>
 
   <div class="hero-main">
+    <div class="hero-id">
+      <div class="avatar">
+        <span>王</span>
+        <img src="./avatar.jpg" alt="王小导的头像" onerror="this.remove()">
+      </div>
+    </div>
+
     <h1>不吹 AI，<br>只带你<br><span class="sticker">做真实的事</span></h1>
 
     <p class="lede"><span class="nb">手把手带人做具体的事：</span><span class="nb">选工具、搭结构、灌资料，一步步走完。</span></p>
@@ -389,10 +412,6 @@
   <section class="wrap" id="about">
     <div class="sec-head"><span class="num">01</span><h2>关于我</h2></div>
     <div class="about">
-      <div class="avatar">
-        <span>王</span>
-        <img src="./avatar.jpg" alt="王小导的头像" onerror="this.remove()">
-      </div>
       <div class="about-text">
         <div class="bar"></div>
         <div>
@@ -400,6 +419,17 @@
           <p>我不太擅长把 AI 讲得很玄。我更愿意手把手带人做一件具体的事——工具选哪个、知识库的结构怎么搭、资料怎么灌进去，一步一步走完，走完你手上真有个东西。</p>
           <p>口播还在练，粉丝不多，10 多个，但我一条一条在发。主页上我最想让人记住的，就四个字：做真实的事。</p>
         </div>
+      </div>
+
+      <div class="tags">
+        <div class="tags-h">我会的</div>
+        <ul class="tag-list">
+          <li>AI 自媒体</li>
+          <li>口播表达</li>
+          <li>AI 知识库搭建</li>
+          <li>公众号教程写作</li>
+          <li>内容生产流程</li>
+        </ul>
       </div>
     </div>
   </section>
